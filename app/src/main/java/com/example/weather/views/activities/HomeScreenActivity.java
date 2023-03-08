@@ -3,12 +3,11 @@ package com.example.weather.views.activities;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weather.Base.BaseActivity;
 import com.example.weather.R;
 
-public class HomeScreenActivity extends AppCompatActivity {
+public class HomeScreenActivity extends BaseActivity {
 
 
     @Override
