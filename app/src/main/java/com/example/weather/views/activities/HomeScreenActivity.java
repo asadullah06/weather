@@ -6,13 +6,17 @@ import androidx.annotation.Nullable;
 
 import com.example.weather.Base.BaseActivity;
 import com.example.weather.R;
+import com.example.weather.databinding.HomeScreenActivityBinding;
 
 public class HomeScreenActivity extends BaseActivity {
 
+    private HomeScreenActivityBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_screen_activity);
+
+        binding = HomeScreenActivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }
