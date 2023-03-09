@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Weather</string>
     <string name="house_image">house image</string>
+    <string name="api_key">5756ff5c335b1b8607331f460a34d753</string>
 </resources>
