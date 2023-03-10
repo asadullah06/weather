@@ -1,9 +1,7 @@
 package com.example.weather.views.activities;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,17 +36,14 @@ public class AddNewCityActivity extends BaseActivity {
      * To all action that can be performed on views
      */
     private void addActions() {
-        binding.tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String searchText = binding.tvSearch.getText().toString();
-                    if (!searchText.isEmpty())
-                        addNewCityViewModel.searchCityAndWeatherDetails(searchText);
-                    return true;
-                }
-                return false;
+        binding.tvSearch.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                String searchText = binding.tvSearch.getText().toString();
+                if (!searchText.isEmpty())
+                    addNewCityViewModel.searchCityAndWeatherDetails(searchText);
+                return true;
             }
+            return false;
         });
     }
 }
