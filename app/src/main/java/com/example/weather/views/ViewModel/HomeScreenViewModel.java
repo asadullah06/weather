@@ -10,10 +10,11 @@ import com.example.weather.Repositories.HourlyWeatherRepo;
 public class HomeScreenViewModel extends ViewModel {
 
     MutableLiveData<HourlyWeatherDto> mHourlyWeatherResult = new MutableLiveData<>();
+    MutableLiveData<String> mSelectedCityResult = new MutableLiveData<>();
 
     HourlyWeatherRepo hourlyWeatherRepo;
 
-    public void HourlyWeatherRepo() {
+    public HomeScreenViewModel() {
         mHourlyWeatherResult.postValue(null);
         hourlyWeatherRepo = new HourlyWeatherRepo();
     }
@@ -37,7 +38,22 @@ public class HomeScreenViewModel extends ViewModel {
         });
     }
 
+    public void getSelectedCityLatLong() {
+        hourlyWeatherRepo.getSelectedCityLatLong(cityLatLong -> {
+            if (!cityLatLong.isEmpty())
+                mSelectedCityResult.postValue(cityLatLong);
+        });
+    }
+
+    public void updateSelectedCityLatLong(String latLong) {
+        hourlyWeatherRepo.updateSelectedCityLatLong(latLong);
+    }
+
     public LiveData<HourlyWeatherDto> getHourlyWeatherResult() {
         return mHourlyWeatherResult;
+    }
+
+    public LiveData<String> getSelectedCityLatLongResult() {
+        return mSelectedCityResult;
     }
 }

@@ -6,38 +6,27 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <EditText
+        android:id="@+id/tv_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="4dp"
+        android:autofillHints="name"
+        android:background="@drawable/bg_search_et"
+        android:drawableStart="@drawable/baseline_search_24"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:hint="@string/search_by_city_name"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="@color/_EBEBF5"
+        android:textColorHint="@color/_EBEBF5"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        card_view:cardBackgroundColor="@android:color/transparent">
-
-        <EditText
-            android:id="@+id/tv_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="name"
-            android:background="@null"
-            android:drawableStart="@drawable/baseline_search_24"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/sf_pro_display_regular"
-            android:hint="@string/search_by_city_name"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="@color/_EBEBF5"
-            android:textColorHint="@color/_EBEBF5"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_searched_cities"
@@ -47,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search"
         card_view:listitem="@layout/searched_locations_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

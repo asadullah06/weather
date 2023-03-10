@@ -1,7 +1,11 @@
 package com.example.weather.Repositories;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.example.weather.Models.HourlyWeatherDto;
 import com.example.weather.Utils.Constants;
+import com.example.weather.Utils.WeatherApplication;
 import com.example.weather.apiInterface.ApiServices;
 import com.example.weather.apiInterface.RetrofitClientInstance;
 
@@ -33,10 +37,31 @@ public class HourlyWeatherRepo {
 
     }
 
+    public void getSelectedCityLatLong(ISelectedCityLatLongCallBack callBack) {
+        SharedPreferences sharedPreferences = getSharedPref();
+
+        String cityLatLong = sharedPreferences.getString(Constants.SELECTED_CITY.getValue(), "");
+        callBack.onResponse(cityLatLong);
+    }
+
+    public void updateSelectedCityLatLong(String latLong) {
+        SharedPreferences sharedPreferences = getSharedPref();
+        sharedPreferences.edit().putString(Constants.SELECTED_CITY.getValue(), latLong).apply();
+    }
+
 
     public interface IHourlyWeatherRespCallBack {
         void onResponse(HourlyWeatherDto hourlyWeatherDto);
 
         void onError(Throwable t);
+    }
+
+    public interface ISelectedCityLatLongCallBack {
+
+        void onResponse(String cityLatLong);
+    }
+
+    private SharedPreferences getSharedPref() {
+        return WeatherApplication.getAppContext().getSharedPreferences(Constants.SHARED_PREF_NAME.getValue(), Context.MODE_PRIVATE);
     }
 }

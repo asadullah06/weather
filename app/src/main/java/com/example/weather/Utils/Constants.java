@@ -5,8 +5,8 @@ public enum Constants {
     CELSIUS("metric"),
     FAHRENHEIT("imperial"),
     SHARED_PREF_NAME("weather_app"),
-    SEARCHED_HISTORY("searched_cities");
-
+    SEARCHED_HISTORY("searched_cities"),
+    SELECTED_CITY("selected_city");
     private String constant;
 
     public String getValue() {

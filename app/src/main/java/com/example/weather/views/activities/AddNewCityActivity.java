@@ -1,5 +1,7 @@
 package com.example.weather.views.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
@@ -39,7 +41,12 @@ public class AddNewCityActivity extends BaseActivity {
 
         setContentView(binding.getRoot());
 
-        searchedCitiesListingAdapter = new SearchedCitiesListingAdapter(searchedCitiesList);
+        searchedCitiesListingAdapter = new SearchedCitiesListingAdapter(searchedCitiesList, item -> {
+            Intent intent = new Intent();
+            intent.putExtra("lat_long", item.getCityCoordinates().getLatitude() + "," + item.getCityCoordinates().getLongitude());
+            setResult(Activity.RESULT_OK, intent);
+            this.finish();
+        });
         setupAdapter();
 
         addNewCityViewModel = new ViewModelProvider(this).get(AddNewCityViewModel.class);
@@ -50,9 +57,9 @@ public class AddNewCityActivity extends BaseActivity {
 
             if (currentWeatherDto != null && currentWeatherDto.getResponseCode() == 200) {
                 // update the searched history list
-                searchedCitiesList.add(currentWeatherDto);
-                searchedCitiesListingAdapter.notifyItemChanged(searchedCitiesList.size() - 1);
-
+                searchedCitiesList.add(0, currentWeatherDto);
+//                searchedCitiesListingAdapter.notifyItemChanged(searchedCitiesList.size() - 1);
+                searchedCitiesListingAdapter.notifyDataSetChanged();
                 // update city name in cache
                 addNewCityViewModel.updateSearchedCity(currentWeatherDto.getCityName());
 

@@ -4,41 +4,34 @@ import com.google.gson.annotations.SerializedName;
 
 public class HourlyWeatherDto {
 
-    @SerializedName("weather")
-    private WeatherDetails[] weatherDetails;
+    @SerializedName("cod")
+    private int responseCode;
+    @SerializedName("list")
+    private ListDto[] listDto;
 
-    @SerializedName("main")
-    private TemperatureStats temperatureStats;
+    @SerializedName("city")
+    private City cityInfo;
 
-    @SerializedName("rain")
-    private String rainInfo;
+    private String errorMessage;
 
-    @SerializedName("dt_txt")
-    private String dateTime;
-
-    private String ErrorMessage;
-
-    public WeatherDetails[] getWeatherDetails() {
-        return weatherDetails;
-    }
-
-    public TemperatureStats getTemperatureStats() {
-        return temperatureStats;
-    }
-
-    public String getRainInfo() {
-        return rainInfo;
-    }
-
-    public String getDateTime() {
-        return dateTime;
-    }
 
     public String getErrorMessage() {
-        return ErrorMessage;
+        return errorMessage;
     }
 
     public void setErrorMessage(String errorMessage) {
-        ErrorMessage = errorMessage;
+        this.errorMessage = errorMessage;
+    }
+
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public ListDto[] getListDto() {
+        return listDto;
+    }
+
+    public City getCityInfo() {
+        return cityInfo;
     }
 }

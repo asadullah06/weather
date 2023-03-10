@@ -1,6 +1,7 @@
 package com.example.weather.views.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,12 @@ import java.util.List;
 public class SearchedCitiesListingAdapter extends RecyclerView.Adapter<SearchedCitiesListingAdapter.ViewHolder> {
 
     private List<CurrentWeatherDto> itemsList;
+    private IOnItemClickListener callBack;
 
 
-    public SearchedCitiesListingAdapter(List<CurrentWeatherDto> itemsList) {
+    public SearchedCitiesListingAdapter(List<CurrentWeatherDto> itemsList, IOnItemClickListener callback) {
         this.itemsList = itemsList;
+        this.callBack = callback;
     }
 
 
@@ -37,7 +40,7 @@ public class SearchedCitiesListingAdapter extends RecyclerView.Adapter<SearchedC
         StringBuilder name = new StringBuilder();
 
         name.append(item.getCityName()).append(", ").append(item.getSys().getCountryShortName());
-        holder.binding.tvCityName.setText(item.getCityName());
+        holder.binding.tvCityName.setText(name);
         StringBuilder temperatureStringBuilder = new StringBuilder();
         temperatureStringBuilder.append(item.getTemperatureStats().getTemperature()).append("°");
         holder.binding.tvTemperature.setText(temperatureStringBuilder);
@@ -51,6 +54,8 @@ public class SearchedCitiesListingAdapter extends RecyclerView.Adapter<SearchedC
 
         StringBuilder weatherDesc = new StringBuilder(item.getWeatherDetails()[0].getDescription());
         holder.binding.tvWeatherDescription.setText(weatherDesc);
+
+        holder.binding.parentLayout.setOnClickListener(v -> callBack.onItemClicked(item));
     }
 
     @Override
@@ -70,5 +75,9 @@ public class SearchedCitiesListingAdapter extends RecyclerView.Adapter<SearchedC
         public SearchedLocationsListItemBinding getBinding() {
             return binding;
         }
+    }
+
+    public interface IOnItemClickListener {
+        void onItemClicked(CurrentWeatherDto item);
     }
 }

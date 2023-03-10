@@ -59,19 +59,3 @@ public class CurrentWeatherDto {
 }
 
 
-class CityCoordinates {
-    @SerializedName("lon")
-    private float longitude;
-
-    @SerializedName("lat")
-    private float latitude;
-
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-}
-
