@@ -21,6 +21,9 @@ public class CurrentWeatherDto {
     @SerializedName("name")
     private String cityName;
 
+    @SerializedName("sys")
+    private Sys sys;
+
 
     public CityCoordinates getCityCoordinates() {
         return cityCoordinates;
@@ -49,6 +52,10 @@ public class CurrentWeatherDto {
     public void setErrorMessage(String errorMessage) {
         ErrorMessage = errorMessage;
     }
+
+    public Sys getSys() {
+        return sys;
+    }
 }
 
 
@@ -67,3 +74,4 @@ class CityCoordinates {
         return latitude;
     }
 }
+

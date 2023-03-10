@@ -15,7 +15,7 @@ public class TemperatureStats {
     @SerializedName("temp_max")
     private float maxTemperature;
 
-    public float getTemperature() {
+    public int getTemperature() {
         return Math.round(temperature);
     }
 
@@ -23,11 +23,12 @@ public class TemperatureStats {
         return feelsLike;
     }
 
-    public float getMaxTemperature() {
+    public int getMaxTemperature() {
         return Math.round(maxTemperature);
+
     }
 
-    public float getMinTemperature() {
+    public int getMinTemperature() {
         return Math.round(minTemperature);
     }
 }

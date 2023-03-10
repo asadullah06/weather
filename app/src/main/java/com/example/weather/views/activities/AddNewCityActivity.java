@@ -27,6 +27,7 @@ public class AddNewCityActivity extends BaseActivity {
     private AddNewCityActivityBinding binding;
     private AddNewCityViewModel addNewCityViewModel;
 
+
     private List<CurrentWeatherDto> searchedCitiesList = new ArrayList<>();
     private SearchedCitiesListingAdapter searchedCitiesListingAdapter;
 
@@ -61,7 +62,7 @@ public class AddNewCityActivity extends BaseActivity {
         });
 
 
-        addNewCityViewModel.getSearchedCitiesResult().observe(this, this::populateSearchedHistory);
+        addNewCityViewModel.getSearchedCitiesResult().observe(this, this::fetchSearchedHistory);
     }
 
     /**
@@ -79,7 +80,7 @@ public class AddNewCityActivity extends BaseActivity {
         });
     }
 
-    private void populateSearchedHistory(String[] strings) {
+    private void fetchSearchedHistory(String[] strings) {
         if (strings.length > 0) {
             for (String cityName : strings) {
                 addNewCityViewModel.searchCityAndWeatherDetails(cityName);

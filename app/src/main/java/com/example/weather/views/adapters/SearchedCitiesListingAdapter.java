@@ -34,6 +34,9 @@ public class SearchedCitiesListingAdapter extends RecyclerView.Adapter<SearchedC
         CurrentWeatherDto item = itemsList.get(position);
 
 
+        StringBuilder name = new StringBuilder();
+
+        name.append(item.getCityName()).append(", ").append(item.getSys().getCountryShortName());
         holder.binding.tvCityName.setText(item.getCityName());
         StringBuilder temperatureStringBuilder = new StringBuilder();
         temperatureStringBuilder.append(item.getTemperatureStats().getTemperature()).append("°");

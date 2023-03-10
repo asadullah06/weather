@@ -41,15 +41,13 @@ public class AddNewCityViewModel extends ViewModel {
     }
 
     public void getSearchedCities() {
-        searchCityWeatherRepo.getSearchedCities(new SearchCityWeatherRepo.ISearchedCitiesCallback() {
-            @Override
-            public void onResponse(String[] citiesList) {
-                mSearchedCitiesResult.postValue(citiesList);
-            }
-        });
+        searchCityWeatherRepo.getSearchedCities(citiesList -> {
+                    mSearchedCitiesResult.postValue(citiesList);
+                }
+        );
     }
 
-    public void updateSearchedCity(String cityName){
+    public void updateSearchedCity(String cityName) {
         searchCityWeatherRepo.updateSearchedCitiesList(cityName);
     }
 
