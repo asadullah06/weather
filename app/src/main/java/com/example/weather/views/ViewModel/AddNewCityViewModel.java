@@ -10,6 +10,7 @@ import com.example.weather.Repositories.SearchCityWeatherRepo;
 public class AddNewCityViewModel extends ViewModel {
 
     MutableLiveData<CurrentWeatherDto> mCurrentWeatherResult = new MutableLiveData<>();
+    MutableLiveData<String[]> mSearchedCitiesResult = new MutableLiveData<>();
 
     SearchCityWeatherRepo searchCityWeatherRepo;
 
@@ -18,6 +19,7 @@ public class AddNewCityViewModel extends ViewModel {
         mCurrentWeatherResult.postValue(null);
 
         searchCityWeatherRepo = new SearchCityWeatherRepo();
+        getSearchedCities();
     }
 
     public void searchCityAndWeatherDetails(String cityName) {
@@ -38,8 +40,26 @@ public class AddNewCityViewModel extends ViewModel {
         });
     }
 
-    public LiveData<CurrentWeatherDto> getCurrentWeatherResult(){
+    public void getSearchedCities() {
+        searchCityWeatherRepo.getSearchedCities(new SearchCityWeatherRepo.ISearchedCitiesCallback() {
+            @Override
+            public void onResponse(String[] citiesList) {
+                mSearchedCitiesResult.postValue(citiesList);
+            }
+        });
+    }
+
+    public void updateSearchedCity(String cityName){
+        searchCityWeatherRepo.updateSearchedCitiesList(cityName);
+    }
+
+    public LiveData<CurrentWeatherDto> getCurrentWeatherResult() {
         return mCurrentWeatherResult;
     }
+
+    public LiveData<String[]> getSearchedCitiesResult() {
+        return mSearchedCitiesResult;
+    }
+
 
 }

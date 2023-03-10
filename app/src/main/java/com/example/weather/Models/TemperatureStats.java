@@ -16,7 +16,7 @@ public class TemperatureStats {
     private float maxTemperature;
 
     public float getTemperature() {
-        return temperature;
+        return Math.round(temperature);
     }
 
     public float getFeelsLike() {
@@ -24,6 +24,10 @@ public class TemperatureStats {
     }
 
     public float getMaxTemperature() {
-        return maxTemperature;
+        return Math.round(maxTemperature);
+    }
+
+    public float getMinTemperature() {
+        return Math.round(minTemperature);
     }
 }

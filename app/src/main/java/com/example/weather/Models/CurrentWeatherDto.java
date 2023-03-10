@@ -35,7 +35,7 @@ public class CurrentWeatherDto {
     }
 
     public String getCityName() {
-        return cityName;
+        return cityName == null ? "" : cityName;
     }
 
     public int getResponseCode() {
